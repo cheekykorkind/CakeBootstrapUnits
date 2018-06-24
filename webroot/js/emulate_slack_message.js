@@ -1,5 +1,5 @@
 $(".message-frame").on({
-    "DOMNodeInserted":function(e){
+    "DOMNodeInserted": function (e) {
         if (e.target.className == 'd-flex flex-column message-form1') {
             set_message_form1_events(e);
         }
@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
 });
 
-function set_message_form1_events(event){
+function set_message_form1_events(event) {
     if (event == undefined) {
         var div = $("div.message-form1");
     } else {
@@ -43,16 +43,18 @@ function set_message_form1_events(event){
     var btn_fix = btngroup_delete_fix.children().eq(1);
     var btngroup_cancel_ok = div.find('.message-form1-cancel-ok');
     var textarea_content = div.find('.form-control');
-    var value_before_fix = '';
+    var value_before_modify = '';
 
     btn_delete.click(function () {
-        alert("Are you sure to delete?");
+        if (confirm('Are you sure you want to delete?')) {
+            div.remove();
+        }
     });
     btn_fix.click(function () {
         alert("fix");
         btngroup_cancel_ok.css("display", "");
         textarea_content.prop('disabled', false);
-        value_before_fix = textarea_content.val();
+        value_before_modify = textarea_content.val();
     });
     div.hover(function () {
         $(this).css("background-color", "gray");
@@ -63,7 +65,7 @@ function set_message_form1_events(event){
     });
 
     btngroup_cancel_ok.children().eq(0).click(function () {
-        textarea_content.val(value_before_fix);
+        textarea_content.val(value_before_modify);
         alert("Cancel");
         btngroup_cancel_ok.css("display", "none");
         textarea_content.prop('disabled', true);
