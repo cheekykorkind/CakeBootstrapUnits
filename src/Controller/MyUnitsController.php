@@ -24,4 +24,11 @@ class MyunitsController extends AppController
 
         $this->set(compact('users'));
     }
+
+    public function emulateSlackMessage()
+    {
+        $users = 11;
+
+        $this->set(compact('users'));
+    }
 }
