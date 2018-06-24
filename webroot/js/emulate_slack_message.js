@@ -7,7 +7,6 @@ $(".message-frame").on({
 });
 
 $(document).ready(function () {
-    set_message_form1_events();
     $("#add-message-form").click(function () {
         $("div.message-frame").append(`
         <div class="d-flex flex-column message-form1">
@@ -19,7 +18,7 @@ $(document).ready(function () {
                 </div>
             </div>
             <div class="d-flex flex-column">
-                <textarea name="keep" placeholder="Keep" id="keep" rows="5"></textarea>
+                <textarea class="form-control" style="background-color : white;" disabled='disabled'>${$("#textarea-input").val()}</textarea>
             </div>
             <div class="d-flex flex-row">
                 <div class="btn-group message-form1-cancel-ok" style="display : none">
@@ -43,29 +42,35 @@ function set_message_form1_events(event){
     var btn_delete = btngroup_delete_fix.children().eq(0);
     var btn_fix = btngroup_delete_fix.children().eq(1);
     var btngroup_cancel_ok = div.find('.message-form1-cancel-ok');
-    
+    var textarea_content = div.find('.form-control');
+    var value_before_fix = '';
+
     btn_delete.click(function () {
         alert("Are you sure to delete?");
     });
     btn_fix.click(function () {
-        alert('fix');
+        alert("fix");
         btngroup_cancel_ok.css("display", "");
+        textarea_content.prop('disabled', false);
+        value_before_fix = textarea_content.val();
     });
-    div
-        .hover(function () {
-            $(this).css("background-color", "gray");
-            btngroup_delete_fix.css("display", "");
-        }, function () {
-            $(this).css("background-color", "");
-            btngroup_delete_fix.css("display", "none");
-        });
+    div.hover(function () {
+        $(this).css("background-color", "gray");
+        btngroup_delete_fix.css("display", "");
+    }, function () {
+        $(this).css("background-color", "");
+        btngroup_delete_fix.css("display", "none");
+    });
 
     btngroup_cancel_ok.children().eq(0).click(function () {
+        textarea_content.val(value_before_fix);
         alert("Cancel");
         btngroup_cancel_ok.css("display", "none");
+        textarea_content.prop('disabled', true);
     });
     btngroup_cancel_ok.children().eq(1).click(function () {
         alert("Ok");
         btngroup_cancel_ok.css("display", "none");
+        textarea_content.prop('disabled', true);
     });
 }
