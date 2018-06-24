@@ -10,17 +10,17 @@ $(document).ready(function () {
     $("#add-message-form").click(function () {
         $("div.message-frame").append(`
         <div class="d-flex flex-column message-form1">
-            <div class="btn-toolbar justify-content-between">
+            <div class="btn-toolbar justify-content-between m-1">
                 <div class="btn" style="color : none" disabled='disabled'>Item name</div>
                 <div class="btn-group btn-group-sm message-form1-delete-fix" style="display : none">
                     <button type="button" class="btn btn-secondary">Delete</button>
                     <button type="button" class="btn btn-secondary">Change</button>
                 </div>
             </div>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column p-1">
                 <textarea class="form-control" style="background-color : white;" disabled='disabled'>${$("#textarea-input").val()}</textarea>
             </div>
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row p-1">
                 <div class="btn-group message-form1-cancel-ok" style="display : none">
                     <button type="button" class="btn btn-light mr-5">Cancel</button>
                     <button type="button" class="btn btn-success mr-5">Ok</button>
@@ -57,10 +57,10 @@ function set_message_form1_events(event) {
         value_before_modify = textarea_content.val();
     });
     div.hover(function () {
-        $(this).css("background-color", "gray");
+        // $(this).css("background-color", "gray");
         btngroup_delete_fix.css("display", "");
     }, function () {
-        $(this).css("background-color", "");
+        // $(this).css("background-color", "");
         btngroup_delete_fix.css("display", "none");
     });
 
